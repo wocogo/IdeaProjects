@@ -1,5 +1,4 @@
 package cn.helssm.test;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,6 +43,7 @@ public class PatternRegx {
             testStr2 = testStr2.replaceAll("(?<=\\})(.+?)(?=\\{)","");
             System.out.println("%%%%  "+testStr2);
             String tmpStr = testStr2.replaceFirst("(\\{)(.+?)(\\})","");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~"+tmpStr);
             tmpStr = testStr2.replace(tmpStr,"");
             //kick out the first matched {value}
             testStr2 = testStr2.replace(tmpStr,"");
@@ -54,6 +54,18 @@ public class PatternRegx {
             System.out.println(testStrx+"xxx");
             System.out.println(tmpStr+"***");
         }
+
+        String testSS = "aae{?columnId}ffe";
+        String replacedStr = testSS.replaceFirst("(.*?\\{\\?)(.*?)(\\}.*)", "$2");
+        System.out.println(replacedStr);
+
+        //replace '' at the start and end. ^ means start, $ means end
+        String singleQuotes = "'abcde'+'xxxxeeeeeeeeb'";
+        singleQuotes = singleQuotes.replaceFirst("^\'(.*?)\'$","$1");
+        System.out.println(singleQuotes);
+
+
+
 
 
 
