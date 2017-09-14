@@ -4,25 +4,25 @@ package com.example.demo.vo;
  * Created by Administrator on 2017/9/11.
  */
 public class TUser {
-    private int userId;
-    private String userName;
+    private int USER_ID;
+    private String USER_NAME;
     private String userPassword;
     private String userEmail;
 
-    public int getUserId() {
-        return userId;
+    public int getUSER_ID() {
+        return USER_ID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUSER_ID(int USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUSER_NAME() {
+        return USER_NAME;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUSER_NAME(String USER_NAME) {
+        this.USER_NAME = USER_NAME;
     }
 
     public String getUserPassword() {

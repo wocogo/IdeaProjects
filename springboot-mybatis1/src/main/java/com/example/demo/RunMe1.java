@@ -25,6 +25,6 @@ public class RunMe1 {
         System.out.println(user);
         TUser user1 = userMapper.findByUserId(1);
         System.out.println(user1);
-        return user.getUserName()+"------"+user.getUserEmail();
+        return user.getUSER_NAME()+"------"+user.getUserEmail();
     }
 }
