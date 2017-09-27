@@ -1,20 +1,18 @@
 package com.example.demo.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2017/9/24.
  */
 @Entity
 @Table(name = "u_user_role", schema = "helssm", catalog = "")
-public class UUserRoleEntity {
+public class UUserRoleEntity implements Serializable{
     private Long uid;
     private Long rid;
 
-    @Basic
+    @Id
     @Column(name = "uid")
     public Long getUid() {
         return uid;
@@ -24,7 +22,7 @@ public class UUserRoleEntity {
         this.uid = uid;
     }
 
-    @Basic
+    @Id
     @Column(name = "rid")
     public Long getRid() {
         return rid;
