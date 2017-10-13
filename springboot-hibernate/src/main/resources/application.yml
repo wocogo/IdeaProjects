@@ -17,5 +17,7 @@ spring:
 
 server:
   port: 1112
+debug: true
+
 #logging:
 #  level.org.hibernate.SQL: debug
