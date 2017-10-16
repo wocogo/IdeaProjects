@@ -16,4 +16,19 @@ public class AdminController {
     public String main(){
         return "admin/main";
     }
+    @RequestMapping(value = "admin/user")
+    public String user(){
+        System.out.println("userPage");
+        return "admin/user";
+    }
+    @RequestMapping(value = "admin/permission")
+    public String permission(){
+        System.out.println("permissionPage");
+        return "admin/permission";
+    }
+    @RequestMapping(value = "admin/role")
+    public String role(){
+        System.out.println("rolePage");
+        return "admin/role";
+    }
 }

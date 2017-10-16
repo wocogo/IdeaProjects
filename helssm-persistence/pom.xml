@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>HelSSM</artifactId>
+    <artifactId>helssm-persistence</artifactId>
     <properties>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.8</mybatis.version>

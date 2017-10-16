@@ -6,5 +6,23 @@
 </head>
 <body>
 User Management
+<div data-dojo-type="dijit/layout/ContentPane" id="userGridContainer"></div>
 </body>
+<!--load dojo-->
+<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>
+<script>
+    require([
+        "dojo/parser", "dojo/_base/declare", "dijit/_WidgetBase", "dijit/_Container", "dijit/form/Button",
+        "dojo/domReady!"
+    ], function (parser, declare, _WidgetBase, _Container, Button) {
+        parser.parse();
+        var MyToolbar = declare([_WidgetBase, _Container], {});
+        var toolbar = new MyToolbar();
+        toolbar.addChild(new Button({label: "Add"}));
+        toolbar.addChild(new Button({label: "Delete"}));
+        toolbar.addChild(new Button({label: "Save"}));
+        toolbar.placeAt("userGridContainer");
+
+    })
+</script>
 </html>
