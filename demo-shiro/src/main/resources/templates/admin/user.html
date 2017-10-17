@@ -3,19 +3,45 @@
 <head>
     <meta charset="UTF-8"/>
     <title>User Management</title>
+    <link rel="stylesheet" href="/dojo/gridx/resources/claro/Gridx.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
 </head>
 <body>
 User Management
 <div data-dojo-type="dijit/layout/ContentPane" id="userGridContainer"></div>
 </body>
 <!--load dojo-->
-<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>
+<script type="text/javascript" src="/dojo/dojo/dojo.js"
+        data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 <script>
     require([
         "dojo/parser", "dojo/_base/declare", "dijit/_WidgetBase", "dijit/_Container", "dijit/form/Button",
+        'dojo/store/Memory',
+        'gridx/Grid',
+        'gridx/core/model/cache/Sync',
+//        'gridx/tests/support/data/MusicData',
+        'dijit/form/TimeTextBox',
+        'dijit/form/CheckBox',
+        'gridx/modules/ColumnLock',
+        'gridx/modules/extendedSelect/Cell',
+        'gridx/modules/RowHeader',
+        'gridx/modules/select/Row',
+        'gridx/modules/IndirectSelect',
+        'gridx/modules/CellWidget',
+        'gridx/modules/Edit',
+        'gridx/modules/filter/FilterBar',
+        'gridx/modules/Filter',
         "dojo/domReady!"
-    ], function (parser, declare, _WidgetBase, _Container, Button) {
-        parser.parse();
+    ], function (parser, declare, _WidgetBase, _Container, Button, Grid, Cache) {
+//        parser.parse();
+
+        var layout = [
+            {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
+            {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
+            {id: 'create_time', field: 'create_time', name: 'Create Time', width: '100px', editable: true},
+            {id: 'last_login_time', field: 'last_login_time', name: 'Last Login Time', width: '100px', editable: true},
+            {id: 'status', field: 'status', name: 'Status', width: '100px', editable: true}
+        ];
         var MyToolbar = declare([_WidgetBase, _Container], {});
         var toolbar = new MyToolbar();
         toolbar.addChild(new Button({label: "Add"}));
@@ -23,6 +49,31 @@ User Management
         toolbar.addChild(new Button({label: "Save"}));
         toolbar.placeAt("userGridContainer");
 
-    })
+        userGrid = new Grid({
+            id : 'userGrid',
+            style: 'width: 800px; height: 500px;',
+            cacheClass: "gridx/core/model/cache/Sync",
+            store: null,
+            structure: layout,
+            barTop: toolbar,
+            modules: [
+//                {
+//                    moduleClass: 'gridx/modules/ColumnLock',
+//                    count: 2
+//                },
+                'gridx/modules/extendedSelect/Cell',
+                'gridx/modules/select/Row',
+                'gridx/modules/RowHeader',
+                'gridx/modules/IndirectSelect',
+                'gridx/modules/CellWidget',
+                'gridx/modules/Edit',
+                'gridx/modules/filter/FilterBar',
+                'gridx/modules/Filter'
+            ]
+        });
+        userGrid.placeAt('');
+        userGrid.startup();
+
+    });
 </script>
 </html>
