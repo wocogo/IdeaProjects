@@ -32,8 +32,33 @@ User Management
         'gridx/modules/filter/FilterBar',
         'gridx/modules/Filter',
         "dojo/domReady!"
-    ], function (parser, declare, _WidgetBase, _Container, Button, Grid, Cache) {
+    ], function (parser, declare, _WidgetBase, _Container, Button, MemoryStore, Grid) {
 //        parser.parse();
+
+        //test data
+        var data = {
+            identifier: "nickname",
+            label: "nickname",
+            items: []
+        }
+        data.items = [{"nickname":"nnn",
+            "email":"eee",
+            "create_time":"ccc",
+            "last_login_time":"lll",
+            "status":"sss"}
+//            ,
+//            {"nickname":"nnn",
+//                "email":"eee",
+//                "create_time":"ccc",
+//                "last_login_time":"lll",
+//                "status":"sss"},
+//            {"nickname":"nnn",
+//                "email":"eee",
+//                "create_time":"ccc",
+//                "last_login_time":"lll",
+//                "status":"sss"}
+ ];
+        var store = new MemoryStore({data:data});
 
         var layout = [
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
@@ -53,14 +78,14 @@ User Management
             id : 'userGrid',
             style: 'width: 800px; height: 500px;',
             cacheClass: "gridx/core/model/cache/Sync",
-            store: null,
+            store: store,
             structure: layout,
             barTop: toolbar,
             modules: [
-//                {
-//                    moduleClass: 'gridx/modules/ColumnLock',
-//                    count: 2
-//                },
+                {
+                    moduleClass: 'gridx/modules/ColumnLock',
+                    count: 2
+                },
                 'gridx/modules/extendedSelect/Cell',
                 'gridx/modules/select/Row',
                 'gridx/modules/RowHeader',
@@ -71,8 +96,8 @@ User Management
                 'gridx/modules/Filter'
             ]
         });
-        userGrid.placeAt('');
-        userGrid.startup();
+        userGrid.placeAt('userGridContainer');
+//        userGrid.startup();
 
     });
 </script>
