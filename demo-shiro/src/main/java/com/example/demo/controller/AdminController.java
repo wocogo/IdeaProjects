@@ -31,4 +31,9 @@ public class AdminController {
         System.out.println("rolePage");
         return "admin/role";
     }
+    @RequestMapping(value = "admin/button")
+    public String buttonTest(){
+        System.out.println("buttonTestPage");
+        return "admin/buttonTest";
+    }
 }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>User Management</title>
     <link rel="stylesheet" href="/dojo/gridx/resources/claro/Gridx.css"/>
-    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="/dojo/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" href="/demoshiro/css/common.css"/>
 </head>
-<body>
-User Management
+<body class="claro">
 <div data-dojo-type="dijit/layout/ContentPane" id="userGridContainer"></div>
 </body>
 <!--load dojo-->
@@ -58,7 +58,8 @@ User Management
 //                "last_login_time":"lll",
 //                "status":"sss"}
  ];
-        var store = new MemoryStore({data:data}); 
+
+        var store = new MemoryStore({data:data});
 
         var layout = [
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
@@ -97,8 +98,15 @@ User Management
             ]
         });
         userGrid.placeAt('userGridContainer');
-//        userGrid.startup();
+        userGrid.startup();
+        var idcnt = 10000;
+        addNew = function () {
+            userGrid.store.add({
+                id: idcnt ++
+            });
+        }
 
     });
 </script>
+
 </html>
