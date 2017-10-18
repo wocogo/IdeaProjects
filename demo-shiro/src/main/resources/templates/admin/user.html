@@ -35,6 +35,11 @@
     ], function (parser, declare, _WidgetBase, _Container, Button, MemoryStore, Grid) {
 //        parser.parse();
 
+        addNew = function () {
+            userGrid.store.add({
+                id: idcnt ++
+            });
+        }
         //test data
         var data = {
             identifier: "nickname",
@@ -70,7 +75,7 @@
         ];
         var MyToolbar = declare([_WidgetBase, _Container], {});
         var toolbar = new MyToolbar();
-        toolbar.addChild(new Button({label: "Add"}));
+        toolbar.addChild(new Button({label: "Add", onClick: addNew}));
         toolbar.addChild(new Button({label: "Delete"}));
         toolbar.addChild(new Button({label: "Save"}));
         toolbar.placeAt("userGridContainer");
@@ -100,11 +105,7 @@
         userGrid.placeAt('userGridContainer');
         userGrid.startup();
         var idcnt = 10000;
-        addNew = function () {
-            userGrid.store.add({
-                id: idcnt ++
-            });
-        }
+
 
     });
 </script>
