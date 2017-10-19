@@ -44,10 +44,12 @@
 
         saveData = function () {
             console.log(JSON.stringify(userGrid.store));
-            var postData = userGrid.store.data;
+            var postData = JSON.stringify(userGrid.store.data);
             var url = 'user/edit'
             request.post(url,{
-                data: postData
+                data: {
+                    "data" : postData
+                }
             });
         }
         
@@ -62,20 +64,20 @@
         }
         data.items = [{"nickname":"nnn",
             "email":"eee",
-            "create_time":"ccc",
-            "last_login_time":"lll",
-            "status":"sss"}
+            "createTime":"20121111",
+            "lastLoginTime":"20121212",
+            "status":"2"}
 //            ,
 //            {"nickname":"nnn",
-//                "email":"eee",
-//                "create_time":"ccc",
-//                "last_login_time":"lll",
-//                "status":"sss"},
+//            "email":"eee",
+//            "createTime":"20121111",
+//            "lastLoginTime":"20121212",
+//            "status":"3"},
 //            {"nickname":"nnn",
-//                "email":"eee",
-//                "create_time":"ccc",
-//                "last_login_time":"lll",
-//                "status":"sss"}
+//        "email":"eee",
+//        "createTime":"20121111",
+//        "lastLoginTime":"20121212",
+//        "status":"1"}
  ];
 
         var store = new MemoryStore({data:data});
@@ -83,8 +85,8 @@
         var layout = [
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
             {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
-            {id: 'create_time', field: 'create_time', name: 'Create Time', width: '100px', editable: true},
-            {id: 'last_login_time', field: 'last_login_time', name: 'Last Login Time', width: '100px', editable: true},
+            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '100px', editable: true},
+            {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true},
             {id: 'status', field: 'status', name: 'Status', width: '100px', editable: true}
         ];
         var MyToolbar = declare([_WidgetBase, _Container], {});
