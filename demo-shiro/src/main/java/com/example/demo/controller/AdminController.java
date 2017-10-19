@@ -1,7 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.UUserEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by WolfgangW on 09/26/17.
@@ -19,8 +28,21 @@ public class AdminController {
     @RequestMapping(value = "admin/user")
     public String user(){
         System.out.println("userPage");
+
         return "admin/user";
     }
+
+    @RequestMapping(value = "admin/user/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> editUser(HttpServletRequest request){
+        String userEntryListJson = request.getParameter("data");
+//        userEntityList = JacksonMapper
+        ArrayList<UUserEntity> userEntityList = null;
+        System.out.println(userEntityList);
+        Map<String,String> returnMap = new HashMap<>();
+        return returnMap;
+    }
+
     @RequestMapping(value = "admin/permission")
     public String permission(){
         System.out.println("permissionPage");

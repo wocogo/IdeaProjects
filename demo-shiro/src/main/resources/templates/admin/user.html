@@ -17,6 +17,7 @@
     require([
         "dojo/parser", "dojo/_base/declare", "dijit/_WidgetBase", "dijit/_Container", "dijit/form/Button",
         'dojo/store/Memory',
+        'dojo/request',
         'gridx/Grid',
         'gridx/core/model/cache/Sync',
 //        'gridx/tests/support/data/MusicData',
@@ -32,13 +33,26 @@
         'gridx/modules/filter/FilterBar',
         'gridx/modules/Filter',
         "dojo/domReady!"
-    ], function (parser, declare, _WidgetBase, _Container, Button, MemoryStore, Grid) {
+    ], function (parser, declare, _WidgetBase, _Container, Button, MemoryStore, request, Grid) {
 //        parser.parse();
 
         addNew = function () {
             userGrid.store.add({
                 id: idcnt ++
             });
+        }
+
+        saveData = function () {
+            console.log(JSON.stringify(userGrid.store));
+            var postData = userGrid.store.data;
+            var url = 'user/edit'
+            request.post(url,{
+                data: postData
+            });
+        }
+        
+        deleteData = function () {
+            console.log("delete");
         }
         //test data
         var data = {
@@ -76,8 +90,8 @@
         var MyToolbar = declare([_WidgetBase, _Container], {});
         var toolbar = new MyToolbar();
         toolbar.addChild(new Button({label: "Add", onClick: addNew}));
-        toolbar.addChild(new Button({label: "Delete"}));
-        toolbar.addChild(new Button({label: "Save"}));
+        toolbar.addChild(new Button({label: "Delete", onClick: deleteData}));
+        toolbar.addChild(new Button({label: "Save", onClick: saveData}));
         toolbar.placeAt("userGridContainer");
 
         userGrid = new Grid({
