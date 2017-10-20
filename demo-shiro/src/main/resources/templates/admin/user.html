@@ -35,6 +35,10 @@
         "dojo/domReady!"
     ], function (parser, declare, _WidgetBase, _Container, Button, MemoryStore, request, Grid) {
 //        parser.parse();
+        
+        loadData = function () {
+
+        }
 
         addNew = function () {
             userGrid.store.add({
@@ -52,6 +56,7 @@
                 }
             });
         }
+        
         
         deleteData = function () {
             console.log("delete");
@@ -83,6 +88,7 @@
         var store = new MemoryStore({data:data});
 
         var layout = [
+            {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
             {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
             {id: 'createTime', field: 'createTime', name: 'Create Time', width: '100px', editable: true},

@@ -4,6 +4,7 @@ import com.example.demo.entity.UUserEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 @Transactional
 public interface UUserDao extends CrudRepository<UUserEntity, Long>{
 
-    public List<UUserEntity> save(List<UUserEntity> uUserEntities);
+    public List<UUserEntity> save(ArrayList<UUserEntity> uUserEntities);
 
     public UUserEntity save(UUserEntity uUserEntity);
 }
