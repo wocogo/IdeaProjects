@@ -45,9 +45,6 @@ public class AdminController {
     public Map<String,String> editUser(HttpServletRequest request) throws IOException {
         String userEntryListJson = request.getParameter("data");
 
-//        userEntityList = JacksonMapper
-//        Jackson2ObjectMapperBuilder.json().json().json().build().readvalue
-        ArrayList<UUserEntity> userEntityList1 = null;
         ObjectMapper mapper = new ObjectMapper();
         List<UUserEntity> userEntityList = mapper.readValue(userEntryListJson, new TypeReference<List<UUserEntity>>(){});
         System.out.println(userEntryListJson);
@@ -59,6 +56,28 @@ public class AdminController {
 
         return returnMap;
     }
+
+
+    @RequestMapping(value = "admin/user/query", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> queryUser(HttpServletRequest request) throws IOException {
+        String userEntryJson = request.getParameter("queryData");
+
+        ObjectMapper mapper = new ObjectMapper();
+        UUserEntity uUserEntity = mapper.readValue(userEntryJson, UUserEntity.class);
+        System.out.println(userEntryJson);
+        System.out.println(uUserEntity);
+        ArrayList<UUserEntity> uUserEntityList4Query = new ArrayList<>();
+        uUserEntityList4Query.add(uUserEntity);
+        List<UUserEntity> userEntityList = uUserDao.findUUserEntitiesByNicknameOrEmail(uUserEntity.getNickname(), uUserEntity.getEmail());
+        System.out.println(userEntityList);
+        Map<String,String> returnMap = new HashMap<>();
+        returnMap.put("result", mapper.writeValueAsString(userEntityList));
+
+
+        return returnMap;
+    }
+
 
     @RequestMapping(value = "admin/permission")
     public String permission(){
