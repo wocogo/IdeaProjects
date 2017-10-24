@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 
@@ -23,7 +24,7 @@ import java.util.List;
 //    has been changed to
 //JpaRepository(implements the JPA standard)
 @Transactional
-public interface UUserDao extends JpaRepository<UUserEntity, Long>{
+public interface UUserDao extends JpaRepository<UUserEntity, Long>, JpaSpecificationExecutor<UUserEntity>{
 
     public List<UUserEntity> save(ArrayList<UUserEntity> uUserEntities);
 
@@ -49,6 +50,10 @@ public interface UUserDao extends JpaRepository<UUserEntity, Long>{
 
 //    public List<UUserEntity> findAll(ArrayList<UUserEntity> uUserEntity);
     public List<UUserEntity> findUUserEntitiesByNicknameOrEmail(String name, String email);
-//    findAll(UUserEntity uUserEntity)
+
+    @Override
+    List<UUserEntity> findAll(Specification<UUserEntity> specification);
+
+    //    findAll(UUserEntity uUserEntity)
 
 }

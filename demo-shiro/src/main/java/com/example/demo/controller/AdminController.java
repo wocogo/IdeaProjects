@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.UUserDao;
 import com.example.demo.entity.UUserEntity;
+import com.example.demo.service.UUserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class AdminController {
     @Autowired
     UUserDao uUserDao;
+    @Autowired
+    UUserService uUserService;
 
     @RequestMapping(value = "admin/mgmt")
     public String login(){
@@ -69,7 +72,8 @@ public class AdminController {
         System.out.println(uUserEntity);
         ArrayList<UUserEntity> uUserEntityList4Query = new ArrayList<>();
         uUserEntityList4Query.add(uUserEntity);
-        List<UUserEntity> userEntityList = uUserDao.findUUserEntitiesByNicknameOrEmail(uUserEntity.getNickname(), uUserEntity.getEmail());
+//        List<UUserEntity> userEntityList = uUserDao.findUUserEntitiesByNicknameOrEmail(uUserEntity.getNickname(), uUserEntity.getEmail());
+        List<UUserEntity> userEntityList = uUserService.getUUser(uUserEntity);
         System.out.println(userEntityList);
         Map<String,String> returnMap = new HashMap<>();
         returnMap.put("result", mapper.writeValueAsString(userEntityList));
