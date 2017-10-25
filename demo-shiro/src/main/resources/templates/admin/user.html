@@ -47,10 +47,14 @@
         queryData = function () {
             var formJson = form.toJson("queryForm");
             console.log(formJson);
-            var url = 'user/query'
+            var url = 'user/query';
+            var queryCondition = [];
+            queryCondition.push({"columnName":"nickname", "columnValue":formJson.nickname, "dataType": "String", "conditionType": "equal"})
+            queryCondition.push({"columnName":"email", "columnValue":formJson.email, "dataType": "String", "conditionType": "like"})
             request.post(url, {
                 data: {
-                    'queryData' : formJson
+                    'queryData' : formJson,
+                    'queryCondition' : queryCondition
                 }
             }).then(function (data) {
                 console.log(data);

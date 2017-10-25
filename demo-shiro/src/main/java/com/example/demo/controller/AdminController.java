@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.vo.QueryCondition;
 import com.example.demo.dao.UUserDao;
 import com.example.demo.entity.UUserEntity;
 import com.example.demo.service.UUserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.ReferenceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,6 +79,12 @@ public class AdminController {
         System.out.println(userEntityList);
         Map<String,String> returnMap = new HashMap<>();
         returnMap.put("result", mapper.writeValueAsString(userEntityList));
+
+
+
+        //test code here
+        String queryJson = request.getParameter("queryCondition");
+        List<QueryCondition> queryConditions = mapper.readValue(queryJson, new TypeReference<List<QueryCondition>>() {});
 
 
         return returnMap;
