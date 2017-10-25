@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.common.vo.QueryCondition;
 import com.example.demo.dao.UUserDao;
 import com.example.demo.entity.UUserEntity;
+import com.example.demo.service.CommonService;
 import com.example.demo.service.UUserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +30,8 @@ public class AdminController {
     UUserDao uUserDao;
     @Autowired
     UUserService uUserService;
+    @Autowired
+    CommonService commonService;
 
     @RequestMapping(value = "admin/mgmt")
     public String login(){
@@ -85,6 +88,9 @@ public class AdminController {
         //test code here
         String queryJson = request.getParameter("queryCondition");
         List<QueryCondition> queryConditions = mapper.readValue(queryJson, new TypeReference<List<QueryCondition>>() {});
+        List<Object> uuuList = commonService.getQueryValues(queryJson);
+        System.out.println(uuuList);
+
 
 
         return returnMap;
