@@ -30,30 +30,16 @@ public interface UUserDao extends JpaRepository<UUserEntity, Long>, JpaSpecifica
 
     public UUserEntity save(UUserEntity uUserEntity);
 
-//    @Override
-//    Iterable<UUserEntity> findAll();
-
-//    List<UUserEntity> findAll();
-
-
-//    @Override
-//    List<UUserEntity> findAll(Iterable<Long> iterable);
-    //    List<UUserEntity>
-
-
-
     @Override
     UUserEntity findOne(Long aLong);
 
 
+    @Override
+    List<UUserEntity> findAll(Iterable<Long> iterable);
 
-
-//    public List<UUserEntity> findAll(ArrayList<UUserEntity> uUserEntity);
     public List<UUserEntity> findUUserEntitiesByNicknameOrEmail(String name, String email);
 
     @Override
     List<UUserEntity> findAll(Specification<UUserEntity> specification);
-
-    //    findAll(UUserEntity uUserEntity)
 
 }

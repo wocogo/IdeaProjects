@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.ReferenceType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,12 +27,9 @@ import java.util.Map;
  */
 @Controller
 public class AdminController {
-    @Autowired
-    UUserDao uUserDao;
+    @Qualifier("UUserServiceImpl")
     @Autowired
     UUserService uUserService;
-    @Autowired
-    CommonService commonService;
 
     @RequestMapping(value = "admin/mgmt")
     public String login(){
@@ -59,7 +57,9 @@ public class AdminController {
         System.out.println(userEntityList);
         System.out.println("userEntityList.size()= "+ userEntityList.size());
         System.out.println(userEntityList.get(0).getEmail());
-        uUserDao.save(userEntityList);
+//        uUserDao.save(userEntityList);
+        uUserService.save(userEntityList);
+
         Map<String,String> returnMap = new HashMap<>();
 
         return returnMap;
@@ -78,21 +78,22 @@ public class AdminController {
         ArrayList<UUserEntity> uUserEntityList4Query = new ArrayList<>();
         uUserEntityList4Query.add(uUserEntity);
 //        List<UUserEntity> userEntityList = uUserDao.findUUserEntitiesByNicknameOrEmail(uUserEntity.getNickname(), uUserEntity.getEmail());
-        List<UUserEntity> userEntityList = uUserService.getUUser(uUserEntity);
+//        List<UUserEntity> userEntityList = uUserService.getUUser(uUserEntity);
+        List<UUserEntity> userEntityList = uUserService.findAll(uUserEntity);
         System.out.println(userEntityList);
         Map<String,String> returnMap = new HashMap<>();
         returnMap.put("result", mapper.writeValueAsString(userEntityList));
 
 
 
-        //test code here
-        String queryJson = request.getParameter("queryCondition");
-        List<QueryCondition> queryConditions = mapper.readValue(queryJson, new TypeReference<List<QueryCondition>>() {});
-        List<Object> uuuList = commonService.getQueryValues(queryJson);
-        System.out.println(uuuList);
+//        test code here
+//        String queryJson = request.getParameter("queryCondition");
+//        List<QueryCondition> queryConditions = mapper.readValue(queryJson, new TypeReference<List<QueryCondition>>() {});
+//        List<Object> uuuList = commonService.getQueryValues(queryJson);
+//        System.out.println(uuuList);
 
 
-
+        System.out.println(returnMap);
         return returnMap;
     }
 

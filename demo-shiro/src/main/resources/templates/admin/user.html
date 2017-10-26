@@ -53,11 +53,21 @@
             queryCondition.push({"columnName":"email", "columnValue":formJson.email, "dataType": "String", "conditionType": "like"})
             request.post(url, {
                 data: {
-                    'queryData' : formJson,
-                    'queryCondition' : queryCondition
+                    'queryData' : formJson
+                },
+                handleAs: 'json',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
                 }
-            }).then(function (data) {
-                console.log(data);
+            }).then(function (datax) {
+                debugger
+                console.log(datax);
+                console.log(datax.result);
+                userGrid.body.destroy();
+//                userGrid.model.store.setData(datax.result);
+                userGrid.model.store.setData([]);
+                userGrid.body.refresh();
+
             });
         }
 
@@ -88,11 +98,8 @@
             label: "nickname",
             items: []
         }
-        data.items = [{"nickname":"nnn",
-            "email":"eee",
-            "createTime":"20121111",
-            "lastLoginTime":"20121212",
-            "status":"2"}
+        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":20121000,"lastLoginTime":20121000,"status":2}];
+//        data.items = [
 //            ,
 //            {"nickname":"nnn",
 //            "email":"eee",
@@ -104,7 +111,7 @@
 //        "createTime":"20121111",
 //        "lastLoginTime":"20121212",
 //        "status":"1"}
- ];
+// ];
 
         var store = new MemoryStore({data:data});
 

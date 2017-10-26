@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.common.dao.CommonDao;
+//import com.example.demo.common.dao.CommonDao;
 import com.example.demo.common.vo.QueryCondition;
 import com.example.demo.entity.UUserEntity;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,16 +20,17 @@ import java.util.List;
 /**
  * Created by WolfgangW on 10/25/17.
  */
-@Service
+//@Service
 public class CommonService {
-    @Autowired
-    CommonDao commonDao;
+//    @Autowired
+//    CommonDao commonDao;
 
     public List<Object> getQueryValues(String queryJson){
-        return commonDao.findAll(autoQuery(queryJson));
+//        return commonDao.findAll(autoQuery(queryJson));
+        return null;
     }
 
-    private Specification autoQuery(String queryJson) {
+    private Specification<Object> autoQuery(String queryJson) {
         return new Specification<Object>() {
             @Override
             public Predicate toPredicate(Root<Object> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -48,6 +49,7 @@ public class CommonService {
                         predicates.add(criteriaBuilder.like(root.get(q.getColumnName()), q.getColumnValue()));
                     }
                 }
+
                 return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
             }
         };
