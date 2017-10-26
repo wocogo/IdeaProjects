@@ -59,13 +59,14 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
                 }
-            }).then(function (datax) {
+            }).then(function (data) {
                 debugger
-                console.log(datax);
-                console.log(datax.result);
-                userGrid.body.destroy();
-//                userGrid.model.store.setData(datax.result);
-                userGrid.model.store.setData([]);
+                console.log(data);
+                console.log(data.result);
+//                userGrid.body.destroy();
+//                userGrid.model.store.setData(data.result);
+                userGrid.model.clearCache();
+                userGrid.model.store.setData(data.result);
                 userGrid.body.refresh();
 
             });

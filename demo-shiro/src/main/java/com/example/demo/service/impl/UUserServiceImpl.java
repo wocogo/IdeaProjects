@@ -34,7 +34,7 @@ public class UUserServiceImpl implements UUserService{
 
     @Override
     public List<UUserEntity> save(List<UUserEntity> userEntityList) {
-        return save(userEntityList);
+        return uUserDao.save(userEntityList);
     }
 
 //    method for building Specification

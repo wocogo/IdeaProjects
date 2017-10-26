@@ -68,7 +68,7 @@ public class AdminController {
 
     @RequestMapping(value = "admin/user/query", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,String> queryUser(HttpServletRequest request) throws IOException {
+    public String queryUser(HttpServletRequest request) throws IOException {
         String userEntryJson = request.getParameter("queryData");
 
         ObjectMapper mapper = new ObjectMapper();
@@ -81,8 +81,9 @@ public class AdminController {
 //        List<UUserEntity> userEntityList = uUserService.getUUser(uUserEntity);
         List<UUserEntity> userEntityList = uUserService.findAll(uUserEntity);
         System.out.println(userEntityList);
-        Map<String,String> returnMap = new HashMap<>();
-        returnMap.put("result", mapper.writeValueAsString(userEntityList));
+        Map<String,Object> returnMap = new HashMap<>();
+//        returnMap.put("result", mapper.writeValueAsString(userEntityList));
+        returnMap.put("result", userEntityList);
 
 
 
@@ -91,10 +92,10 @@ public class AdminController {
 //        List<QueryCondition> queryConditions = mapper.readValue(queryJson, new TypeReference<List<QueryCondition>>() {});
 //        List<Object> uuuList = commonService.getQueryValues(queryJson);
 //        System.out.println(uuuList);
+        String result = mapper.writeValueAsString(returnMap);
 
-
-        System.out.println(returnMap);
-        return returnMap;
+        System.out.println(result);
+        return result;
     }
 
 
