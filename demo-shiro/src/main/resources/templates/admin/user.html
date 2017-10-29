@@ -48,13 +48,13 @@
             });
             return res;
         }
-//        function setDate(d){
-//            rest = locale.format(d, {
-//                selector: 'date',
-//                datePattern: 'yyyy-M-d'
-//            });
-//            return rest;
-//        }
+        function setDate(d){
+            rest = locale.format(d, {
+                selector: 'date',
+                datePattern: 'yyyy--M-d'
+            });
+            return rest;
+        }
         function getTime(d){
             res = locale.format(d, {
                 selector: 'time',
@@ -147,8 +147,8 @@
                 editor: DateTextBox,
                 editorArgs: {
                     fromEditor: getDate
-//                    ,
-//                    toEditor: setDate
+                    ,
+                    toEditor: setDate
                 }
             },
             {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
