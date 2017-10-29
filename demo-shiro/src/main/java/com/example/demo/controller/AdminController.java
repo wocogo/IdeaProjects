@@ -1,15 +1,14 @@
 package com.example.demo.controller;
 
-import com.example.demo.common.vo.QueryCondition;
-import com.example.demo.dao.UUserDao;
 import com.example.demo.entity.UUserEntity;
-import com.example.demo.service.CommonService;
 import com.example.demo.service.UUserService;
+import com.example.demo.vo.UUser;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.ReferenceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.web.JsonProjectingMethodInterceptorFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,10 +79,14 @@ public class AdminController {
 //        List<UUserEntity> userEntityList = uUserDao.findUUserEntitiesByNicknameOrEmail(uUserEntity.getNickname(), uUserEntity.getEmail());
 //        List<UUserEntity> userEntityList = uUserService.getUUser(uUserEntity);
         List<UUserEntity> userEntityList = uUserService.findAll(uUserEntity);
+        String userEntityListStr = mapper.writeValueAsString(userEntityList);
+        List<UUser> uUserList = mapper.readValue(userEntityListStr, new TypeReference<List<UUser>>(){});
         System.out.println(userEntityList);
+        System.out.println("=================================");
+        System.out.println(uUserList);
         Map<String,Object> returnMap = new HashMap<>();
 //        returnMap.put("result", mapper.writeValueAsString(userEntityList));
-        returnMap.put("result", userEntityList);
+        returnMap.put("result", uUserList);
 
 
 

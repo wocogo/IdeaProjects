@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>User Management</title>
-    <link rel="stylesheet" href="/dojo/gridx/resources/claro/Gridx.css"/>
     <link rel="stylesheet" href="/dojo/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" href="/dojo/gridx/resources/claro/Gridx.css"/>
     <link rel="stylesheet" href="/demoshiro/css/common.css"/>
+    <!--<link rel="stylesheet" href="/dojo/dojo/resources/dojo.css"/>-->
 </head>
 <body class="claro">
 <div data-dojo-type="dijit/layout/ContentPane" id="queryPanel">
@@ -22,28 +23,47 @@
         data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 <script>
     require([
-        "dojo/parser", "dojo/_base/declare", "dijit/_WidgetBase", "dijit/_Container", "dijit/form/Button",
+        "dojo/parser", "dojo/_base/declare", "dijit/_WidgetBase", "dijit/_Container",
+        "dijit/form/Button",
+        'dijit/form/TextBox',
+        'dijit/form/ComboBox',
+        'dijit/form/CheckBox',
+        'dijit/form/DateTextBox',
+        'dijit/form/TimeTextBox',
         'dojo/store/Memory',
         'dojo/request',
         'dojo/dom-form',
         'gridx/Grid',
-        'gridx/core/model/cache/Sync',
-//        'gridx/tests/support/data/MusicData',
-        'dijit/form/TimeTextBox',
-        'dijit/form/CheckBox',
-        'gridx/modules/ColumnLock',
-        'gridx/modules/extendedSelect/Cell',
-        'gridx/modules/RowHeader',
-        'gridx/modules/select/Row',
-        'gridx/modules/IndirectSelect',
-        'gridx/modules/CellWidget',
-        'gridx/modules/Edit',
-        'gridx/modules/filter/FilterBar',
-        'gridx/modules/Filter',
+        'dojo/date/locale',
+        'gridx/allModules',
         "dojo/domReady!"
-    ], function (parser, declare, _WidgetBase, _Container, Button, MemoryStore, request, form, Grid) {
+    ], function (parser, declare, _WidgetBase, _Container, Button, TextBox,
+                 ComboBox, CheckBox, DateTextBox, TimeTextBox, MemoryStore, request, form, Grid, locale) {
 //        parser.parse();
-        
+
+        function getDate(d){
+            res = locale.format(d, {
+                selector: 'date',
+                datePattern: 'yyyy-M-d'
+            });
+            return res;
+        }
+//        function setDate(d){
+//            rest = locale.format(d, {
+//                selector: 'date',
+//                datePattern: 'yyyy-M-d'
+//            });
+//            return rest;
+//        }
+        function getTime(d){
+            res = locale.format(d, {
+                selector: 'time',
+                timePattern: 'hh:mm:ss'
+            });
+            return res;
+        }
+
+
         queryData = function () {
             var formJson = form.toJson("queryForm");
             console.log(formJson);
@@ -99,7 +119,7 @@
             label: "id",
             items: []
         }
-        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":20121000,"lastLoginTime":20121000,"status":2}];
+        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":"2012-10-02","lastLoginTime":"2012/10/05","status":2}];
 //        data.items = [
 //            ,
 //            {"nickname":"nnn",
@@ -120,8 +140,23 @@
             {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
             {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
-            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '100px', editable: true},
-            {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true},
+            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
+                dataType: 'date',
+                storePattern: 'yyyy-M-d',
+                gridPattern: 'yyyy--MM--dd',
+                editor: DateTextBox,
+                editorArgs: {
+                    fromEditor: getDate
+//                    ,
+//                    toEditor: setDate
+                }
+            },
+            {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
+                dataType: 'date',
+                storePattern: 'yyyy/M/d',
+                gridPattern: 'yyyy--MM--dd',
+                editor:TimeTextBox
+            },
             {id: 'status', field: 'status', name: 'Status', width: '100px', editable: true}
         ];
         var MyToolbar = declare([_WidgetBase, _Container], {});
@@ -139,14 +174,14 @@
             structure: layout,
             barTop: toolbar,
             modules: [
-                {
-                    moduleClass: 'gridx/modules/ColumnLock',
-                    count: 2
-                },
-                'gridx/modules/extendedSelect/Cell',
-                'gridx/modules/select/Row',
-                'gridx/modules/RowHeader',
-                'gridx/modules/IndirectSelect',
+//                {
+//                    moduleClass: 'gridx/modules/ColumnLock',
+//                    count: 2
+//                },
+//                'gridx/modules/extendedSelect/Cell',
+//                'gridx/modules/select/Row',
+//                'gridx/modules/RowHeader',
+//                'gridx/modules/IndirectSelect',
                 'gridx/modules/CellWidget',
                 'gridx/modules/Edit',
                 'gridx/modules/filter/FilterBar',
