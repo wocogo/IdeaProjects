@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/9/24.
@@ -13,8 +13,8 @@ public class UUserEntity {
     private String nickname;
     private String email;
     private String pswd;
-    private Timestamp createTime;
-    private Timestamp lastLoginTime;
+    private Date createTime;
+    private Date lastLoginTime;
     private Long status;
 
     @Id
@@ -59,21 +59,21 @@ public class UUserEntity {
 
     @Basic
     @Column(name = "create_time")
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
     @Column(name = "last_login_time")
-    public Timestamp getLastLoginTime() {
+    public Date getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Timestamp lastLoginTime) {
+    public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 

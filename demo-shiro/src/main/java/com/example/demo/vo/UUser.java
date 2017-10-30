@@ -2,8 +2,7 @@ package com.example.demo.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by WolfgangW on 10/27/17.

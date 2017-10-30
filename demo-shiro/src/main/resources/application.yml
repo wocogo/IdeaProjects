@@ -20,8 +20,11 @@ spring:
     content-type: text/html
     prefix: classpath:/templates/
     suffix: .html
-#  resources:
-#    static-locations: classpath:/static/
+#  not work for below setup
+  resources:
+    static-locations: classpath:/resources/**
+  mvc:
+    static-path-pattern: /resources/**
 
 #  jooq:
 #    sql-dialect: org.hibernate.dialect.MySQL5Dialect
