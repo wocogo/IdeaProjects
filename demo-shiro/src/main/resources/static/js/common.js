@@ -18,6 +18,7 @@ require(
         "dojo/domReady!"],
     function (parser, declare, _WidgetBase, _Container, Button, TextBox,
               ComboBox, CheckBox, DateTextBox, TimeTextBox, MemoryStore, request, form, Grid, locale) {
+        fmto = "EEEE, MMMM d yyyy GGG, h:m:s.SSS a z (ZZZZ)";
         fmts = {
             explicit: fmto,
             usDate: "MM/dd/yyyy",
@@ -34,6 +35,7 @@ require(
             "extra stuff": "MMM d, yyyy -- 39:45, ____+1"
         };
         getDateStrFromDBDateStr = function (d, pattern, pat) {
+            alert(d);
             //console.log('getDateStrFromDBDateStr========'+d);
             //console.log(pattern);
             //console.log(pat);

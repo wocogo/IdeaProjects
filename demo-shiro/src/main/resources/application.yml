@@ -21,10 +21,11 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 #  not work for below setup
-  resources:
-    static-locations: classpath:/resources/**
+#  resources:
+#    static-locations: /**
+#  works, and the static path will referenced to /static（or/public ,/resources，/META-INF/resources)
   mvc:
-    static-path-pattern: /resources/**
+    static-path-pattern: /**
 
 #  jooq:
 #    sql-dialect: org.hibernate.dialect.MySQL5Dialect

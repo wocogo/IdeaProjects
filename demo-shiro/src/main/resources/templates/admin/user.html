@@ -19,9 +19,9 @@
 <div data-dojo-type="dijit/layout/ContentPane" id="userGridContainer"></div>
 </body>
 <!--load dojo-->
-<script type="text/javascript" src="/demoshiro/css/common.css"></script>
 <script type="text/javascript" src="/dojo/dojo/dojo.js"
-        data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
+data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
+<script type="text/javascript" src="/demoshiro/js/common.js"></script>
 
 <script>
     require([
@@ -121,7 +121,7 @@
             label: "id",
             items: []
         }
-        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":"2012-10-02","lastLoginTime":"2012/10/05","status":2}];
+        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":1507046400000,"lastLoginTime":"20101111","status":2}];
 //        data.items = [
 //            ,
 //            {"nickname":"nnn",
@@ -139,31 +139,34 @@
         var store = new MemoryStore({data:data});
 
         var layout = [
-            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
-                dataType: 'date',
-                storePattern: 'yyyy-M-d',
-                gridPattern: 'yyyy--MM--dd',
-                editor: DateTextBox,
-                editorArgs: {
-                    fromEditor: getDate,
-                    toEditor: setDate
-                },
-                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.createTime, 'MM/dd/yyyy HH:mm:ss','yyyy-MM-dd HH:mm:ss')}
-            },
-            {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
-            {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
-            {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
             {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
                 dataType: 'date',
                 storePattern: 'yyyy/M/d',
                 gridPattern: 'yyyy--MM--dd',
+//                formatter: 'yyyy--MM--dd',
+                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy--MM--dd')},
                 editor:DateTextBox,
                 editorArgs: {
-                    fromEditor: getDate,
-                    toEditor: setDate
-                },
-                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.createTime, 'MM/dd/yyyy HH:mm:ss','yyyy-MM-dd HH:mm:ss')}
+//                    fromEditor: getDate,
+//                    toEditor: setDate
+                }
             },
+            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
+                dataType: 'date',
+                storePattern: 'yyyy-M-d',
+                gridPattern: 'yyyy--MM--dd',
+//                formatter: 'yyyy--MM--dd',
+
+                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.createTime, 'yyyy--MM--dd')},
+                editor: DateTextBox,
+                editorArgs: {
+//                    fromEditor: getDate,
+//                    toEditor: setDate
+                }
+            },
+            {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
+            {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
+            {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
             {id: 'status', field: 'status', name: 'Status', width: '100px', editable: true}
         ];
         var MyToolbar = declare([_WidgetBase, _Container], {});
