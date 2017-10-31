@@ -35,7 +35,7 @@ require(
             "extra stuff": "MMM d, yyyy -- 39:45, ____+1"
         };
         getDateStrFromDBDateStr = function (d, pattern, pat) {
-            alert(d);
+            console.log("abcdefg");
             //console.log('getDateStrFromDBDateStr========'+d);
             //console.log(pattern);
             //console.log(pat);

@@ -65,6 +65,11 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
             return res;
         }
 
+        function testA(d){
+            console.log(d,"***");
+            return "20120101"
+        }
+
 
         queryData = function () {
             var formJson = form.toJson("queryForm");
@@ -121,7 +126,7 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
             label: "id",
             items: []
         }
-        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":1507046400000,"lastLoginTime":"20101111","status":2}];
+        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":1507046400000,"lastLoginTime":1507046400000,"status":2}];
 //        data.items = [
 //            ,
 //            {"nickname":"nnn",
@@ -140,11 +145,12 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 
         var layout = [
             {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
-                dataType: 'date',
+                dataType: 'datetime',
                 storePattern: 'yyyy/M/d',
                 gridPattern: 'yyyy--MM--dd',
-//                formatter: 'yyyy--MM--dd',
-                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy--MM--dd')},
+//                formatter: 'yyyy--MM--dd hh:mm:ss',
+                formatter: testA,
+//                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy--MM--dd')},
                 editor:DateTextBox,
                 editorArgs: {
 //                    fromEditor: getDate,
