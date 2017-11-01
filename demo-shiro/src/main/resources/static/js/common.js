@@ -39,7 +39,6 @@ require(
             //console.log('getDateStrFromDBDateStr========'+d);
             //console.log(pattern);
             //console.log(pat);
-
             if (d == null || d == '' || d == undefined) {
                 return '';
             }

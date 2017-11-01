@@ -22,6 +22,12 @@
 <script type="text/javascript" src="/dojo/dojo/dojo.js"
 data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 <script type="text/javascript" src="/demoshiro/js/common.js"></script>
+<script>
+
+    dojoConfig = {
+        locale: 'utf-8'
+    }
+</script>
 
 <script>
     require([
@@ -45,17 +51,17 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 
         function getDate(d){
             res = locale.format(d, {
-                selector: 'date',
-                datePattern: 'yyyy-M-d'
+                selector: 'datetime',
+                datePattern: 'yyyy-MM-dd hh:mm:ss'
             });
             return res;
         }
         function setDate(d){
-            rest = locale.format(d, {
-                selector: 'date',
-                datePattern: 'yyyy-M-d'
+            res = locale.format(d, {
+                selector: 'datetime',
+                datePattern: 'yyyy-MM-dd hh:mm:ss'
             });
-            return rest;
+            return res;
         }
         function getTime(d){
             res = locale.format(d, {
@@ -87,7 +93,6 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
                     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
                 }
             }).then(function (data) {
-                debugger
                 console.log(data);
                 console.log(data.result);
 //                userGrid.body.destroy();
@@ -126,7 +131,7 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
             label: "id",
             items: []
         }
-        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":1507046400000,"lastLoginTime":1507046400000,"status":2}];
+//        data.items = [{"id":15,"nickname":"nnn","email":"eee","pswd":null,"createTime":1507046400000,"lastLoginTime":1507046400000,"status":2}];
 //        data.items = [
 //            ,
 //            {"nickname":"nnn",
@@ -146,30 +151,33 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
         var layout = [
             {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
                 dataType: 'datetime',
-                storePattern: 'yyyy/M/d',
-                gridPattern: 'yyyy--MM--dd',
+//                storePattern: 'yyyy--MM--dd hh:mm:ss',
+//                gridPattern: 'yyyy--MM--dd hh:mm:ss',
 //                formatter: 'yyyy--MM--dd hh:mm:ss',
-                formatter: testA,
-//                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy--MM--dd')},
+//                formatter: testA,
+
                 editor:DateTextBox,
                 editorArgs: {
-//                    fromEditor: getDate,
-//                    toEditor: setDate
+//                    props:'required:false, constraints:{selector:"date", datePattern:"MM/dd/yyyy HH:mm:ss"}',
+                    fromEditor: setDate,
+                    toEditor: getDate
                 }
+//                ,
+//                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy-MM-dd hh:mm:ss')}
             },
-            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
-                dataType: 'date',
-                storePattern: 'yyyy-M-d',
-                gridPattern: 'yyyy--MM--dd',
-//                formatter: 'yyyy--MM--dd',
-
-                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.createTime, 'yyyy--MM--dd')},
-                editor: DateTextBox,
-                editorArgs: {
-//                    fromEditor: getDate,
-//                    toEditor: setDate
-                }
-            },
+//            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
+////                dataType: 'date',
+////                storePattern: 'yyyy-M-d',
+////                gridPattern: 'yyyy--MM--dd',
+////                formatter: 'yyyy--MM--dd',
+//
+////                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.createTime, 'yyyy--MM--dd')},
+////                editor: DateTextBox,
+//                editorArgs: {
+////                    fromEditor: getDate,
+////                    toEditor: setDate
+//                }
+//            },
             {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
             {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
