@@ -18,6 +18,7 @@ require(
         "dojo/domReady!"],
     function (parser, declare, _WidgetBase, _Container, Button, TextBox,
               ComboBox, CheckBox, DateTextBox, TimeTextBox, MemoryStore, request, form, Grid, locale) {
+
         fmto = "EEEE, MMMM d yyyy GGG, h:m:s.SSS a z (ZZZZ)";
         fmts = {
             explicit: fmto,
@@ -34,11 +35,30 @@ require(
             literal: "'this is not really a date'",
             "extra stuff": "MMM d, yyyy -- 39:45, ____+1"
         };
-        getDateStrFromDBDateStr = function (d, pattern, pat) {
+        parseDate = function (d) {
+            if (d == null || d == '' || d == undefined) {
+                return '';
+            }
+            var date = null;
+
+            try {
+                date = new Date(d);
+            } catch (e) {
+                date = d;
+            }
+        }
+        parseDatetime = function (d) {
+            if (d == null || d == '' || d == undefined) {
+                return '';
+            }
+        }
+
+
+
+
+
+        _getDateStrFromDBDateStr = function (d, pattern, pat) {
             console.log("abcdefg");
-            //console.log('getDateStrFromDBDateStr========'+d);
-            //console.log(pattern);
-            //console.log(pat);
             if (d == null || d == '' || d == undefined) {
                 return '';
             }
@@ -68,7 +88,7 @@ require(
         /**
          * it's to get date time to compatible normal date time pattern
          */
-        getDatetime = function (dataType, dateStr) {
+        _getDatetime = function (dataType, dateStr) {
             //console.log('getDatetime');
             //console.log(dateStr);
             var pattern = fmts.usDate;
@@ -90,7 +110,7 @@ require(
         /**
          * it's to set date string to widget
          */
-        setDateTime = function (wid, dataType, dateStr) {
+        _setDateTime = function (wid, dataType, dateStr) {
             //console.log('###################setDateTime setDateTime setDateTime setDateTime');
             //console.log(dataType);
             //console.log(dateStr);
@@ -102,7 +122,7 @@ require(
                 dijit.byId(wid).set('value', null);
             }
         };
-        parseDate = function (str, pattern) {
+        _parseDate = function (str, pattern) {
             //console.log('parseDateparseDate=================');
             var pat = arguments.length > 1 ? pattern : fmts.usDefaultDatetime;
             //console.log(pat);
