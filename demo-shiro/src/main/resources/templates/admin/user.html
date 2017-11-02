@@ -25,7 +25,7 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 <script>
 
     dojoConfig = {
-        locale: 'utf-8'
+        locale: 'us'
     }
 </script>
 
@@ -159,8 +159,8 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
                 editor:DateTextBox,
                 editorArgs: {
 //                    props:'required:false, constraints:{selector:"date", datePattern:"MM/dd/yyyy HH:mm:ss"}',
-                    fromEditor: setDate,
-                    toEditor: getDate
+                    fromEditor: parseDatetime,
+                    toEditor: parseDatetime
                 }
 //                ,
 //                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy-MM-dd hh:mm:ss')}

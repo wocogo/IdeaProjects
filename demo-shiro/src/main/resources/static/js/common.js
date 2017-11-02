@@ -39,18 +39,31 @@ require(
             if (d == null || d == '' || d == undefined) {
                 return '';
             }
-            var date = null;
-
-            try {
+            var date = d;
+            if(typeof d == 'num'){
                 date = new Date(d);
-            } catch (e) {
-                date = d;
             }
+            var res = locale.format(date, {
+                selector: 'date',
+                datePattern: fmts.usDate
+            });
+            console.log(res);
+            return res;
         }
         parseDatetime = function (d) {
             if (d == null || d == '' || d == undefined) {
                 return '';
             }
+            var date = d;
+            if(typeof d == 'num'){
+                date = new Date(d);
+            }
+            var res = locale.format(date, {
+                selector: 'datetime',
+                datePattern: fmts.usEditableDatetime
+            });
+            console.log(res);
+            return res;
         }
 
 
