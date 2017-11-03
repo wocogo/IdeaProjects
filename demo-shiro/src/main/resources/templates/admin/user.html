@@ -19,13 +19,18 @@
 <div data-dojo-type="dijit/layout/ContentPane" id="userGridContainer"></div>
 </body>
 <!--load dojo-->
-<script type="text/javascript" src="/dojo/dojo/dojo.js"
-data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
+<!--<script type="text/javascript" src="/dojo/dojo/dojo.js"-->
+<!--data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>-->
+<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>
 <script type="text/javascript" src="/demoshiro/js/common.js"></script>
 <script>
 
     dojoConfig = {
-        locale: 'us'
+        locale: 'en-us',
+        baseUrl: '/',
+        packages: [
+            {name: 'dojo', location: 'dojo/dojo'}
+        ]
     }
 </script>
 
@@ -151,10 +156,13 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
         var layout = [
             {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
                 dataType: 'datetime',
-//                storePattern: 'yyyy--MM--dd hh:mm:ss',
-//                gridPattern: 'yyyy--MM--dd hh:mm:ss',
+                storePattern: 'yyyy--MM--dd hh:mm:ss',
+                gridPattern: 'yyyy--MM--dd hh:mm:ss',
 //                formatter: 'yyyy--MM--dd hh:mm:ss',
 //                formatter: testA,
+                formatter: function (rawData) {
+                    return parseDatetime(rawData.lastLoginTime);
+                },
 
                 editor:DateTextBox,
                 editorArgs: {

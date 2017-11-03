@@ -43,6 +43,10 @@ require(
             if(typeof d == 'num'){
                 date = new Date(d);
             }
+            date = locale.parse(date, {
+                selector: 'date',
+                datePattern: fmts.usDate
+            });
             var res = locale.format(date, {
                 selector: 'date',
                 datePattern: fmts.usDate
@@ -57,10 +61,14 @@ require(
             var date = d;
             if(typeof d == 'num'){
                 date = new Date(d);
+                date = locale.parse(date, {
+                    selector: 'datetime',
+                    datePattern: fmts.usDefaultDatetime
+                });
             }
             var res = locale.format(date, {
                 selector: 'datetime',
-                datePattern: fmts.usEditableDatetime
+                datePattern: fmts.usDefaultDatetime
             });
             console.log(res);
             return res;
