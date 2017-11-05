@@ -26,7 +26,8 @@ require(
             usEditableDatetime: "MM/dd/yyyy h:m:s",
             usDatetime: "MM/dd/yyyy h:m:s.SSS",
             usDefaultDate: "yyyy-MM-dd",//Jun 12 2014 10:55:33:496PM
-            usDefaultDatetime: "yyyy-MM-dd HH:mm:ss",//Jun 12 2014 10:55:33:496PM
+            usDefaultDatetime: "yyyy-MM-dd HH:mm:ss.SSS",//Jun 12 2014 10:55:33:496PM
+            defaultDatetime: "yyyy-MM-dd HH:mm:ss",//Jun 12 2014 10:55:33:496PM
             simple: "MMM d, yyyy",
             abbreviated: "EEE, MMM d, yyyy G",
             full: "MMMM d, 'in the year' yyyy GGGG",
@@ -54,7 +55,7 @@ require(
             console.log(res);
             return res;
         }
-        parseDatetime = function (d) {
+        formatDatetime = function (d) {
             if (d == null || d == '' || d == undefined) {
                 return '';
             }
@@ -62,15 +63,26 @@ require(
             if(typeof d == 'num'){
                 date = new Date(d);
                 date = locale.parse(date, {
-                    selector: 'datetime',
-                    datePattern: fmts.usDefaultDatetime
+                    selector: 'date',
+                    datePattern: fmts.defaultDatetime
                 });
             }
             var res = locale.format(date, {
-                selector: 'datetime',
-                datePattern: fmts.usDefaultDatetime
+                selector: 'date',
+                datePattern: fmts.defaultDatetime
             });
             console.log(res);
+            return res;
+        }
+
+        parseDatetime = function (d) {
+            if (d == null || d == '' || d == undefined) {
+                return '';
+            }
+            var res = locale.parse(d, {
+                selector: 'date',
+                datePattern: fmts.defaultDatetime
+            });
             return res;
         }
 

@@ -2,6 +2,7 @@ package com.example.demo.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -12,8 +13,8 @@ public class UUser {
     private long id;
     private String nickname;
     private String email;
-    private Date createTime;
-    private Date lastLoginTime;
+    private Timestamp createTime;
+    private Timestamp lastLoginTime;
     private Long status;
 
     public long getId() {
@@ -40,19 +41,19 @@ public class UUser {
         this.email = email;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getLastLoginTime() {
+    public Timestamp getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
+    public void setLastLoginTime(Timestamp lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 

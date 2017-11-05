@@ -21,18 +21,14 @@
 <!--load dojo-->
 <!--<script type="text/javascript" src="/dojo/dojo/dojo.js"-->
 <!--data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>-->
-<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>
-<script type="text/javascript" src="/demoshiro/js/common.js"></script>
 <script>
-
     dojoConfig = {
-        locale: 'en-us',
-        baseUrl: '/',
-        packages: [
-            {name: 'dojo', location: 'dojo/dojo'}
-        ]
+        locale: 'en-us'
     }
 </script>
+<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>
+<script type="text/javascript" src="/demoshiro/js/common.js"></script>
+
 
 <script>
     require([
@@ -42,6 +38,7 @@
         'dijit/form/ComboBox',
         'dijit/form/CheckBox',
         'dijit/form/DateTextBox',
+        'dijit/form/_DateTimeTextBox',
         'dijit/form/TimeTextBox',
         'dojo/store/Memory',
         'dojo/request',
@@ -51,10 +48,11 @@
         'gridx/allModules',
         "dojo/domReady!"
     ], function (parser, declare, _WidgetBase, _Container, Button, TextBox,
-                 ComboBox, CheckBox, DateTextBox, TimeTextBox, MemoryStore, request, form, Grid, locale) {
+                 ComboBox, CheckBox, DateTextBox, DateTimeTextBox, TimeTextBox, MemoryStore, request, form, Grid, locale) {
 //        parser.parse();
 
         function getDate(d){
+            if(d == undefined)return '';
             res = locale.format(d, {
                 selector: 'datetime',
                 datePattern: 'yyyy-MM-dd hh:mm:ss'
@@ -62,6 +60,7 @@
             return res;
         }
         function setDate(d){
+            if(d == undefined)return '';
             res = locale.format(d, {
                 selector: 'datetime',
                 datePattern: 'yyyy-MM-dd hh:mm:ss'
@@ -154,22 +153,25 @@
         var store = new MemoryStore({data:data});
 
         var layout = [
-            {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '100px', editable: true,
+            {id: 'lastLoginTime', field: 'lastLoginTime', name: 'Last Login Time', width: '130px', editable: true,
                 dataType: 'datetime',
-                storePattern: 'yyyy--MM--dd hh:mm:ss',
-                gridPattern: 'yyyy--MM--dd hh:mm:ss',
+                storePattern: 'yyyy-MM-dd hh:mm:ss',
+                gridPattern: 'yyyy-MM-dd hh:mm:ss',
 //                formatter: 'yyyy--MM--dd hh:mm:ss',
 //                formatter: testA,
-                formatter: function (rawData) {
-                    return parseDatetime(rawData.lastLoginTime);
-                },
 
                 editor:DateTextBox,
                 editorArgs: {
-//                    props:'required:false, constraints:{selector:"date", datePattern:"MM/dd/yyyy HH:mm:ss"}',
-                    fromEditor: parseDatetime,
-                    toEditor: parseDatetime
-                }
+                    props:'required:false, constraints:{selector:"date", datePattern:"yyyy/MM/dd hh:mm:ss"}',
+//                    seems no need to format parse to string date here
+                    fromEditor: function (d) {
+                        return formatDatetime(d);
+                    },
+                    toEditor: function (storeData, gridData) {
+//                        return formatDatetime(storeData);
+                        return parseDatetime(storeData);
+                    }
+                },
 //                ,
 //                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy-MM-dd hh:mm:ss')}
             },
