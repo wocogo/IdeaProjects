@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -69,6 +71,7 @@ public class UUserEntity {
 
     @Basic
     @Column(name = "last_login_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Timestamp getLastLoginTime() {
         return lastLoginTime;
     }
