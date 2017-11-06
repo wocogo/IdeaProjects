@@ -1,5 +1,6 @@
 package com.example.demo.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
@@ -12,8 +13,10 @@ public class UUser {
     private long id;
     private String nickname;
     private String email;
-    private String createTime;
-    private String lastLoginTime;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date lastLoginTime;
     private Long status;
 
     public long getId() {
@@ -40,19 +43,19 @@ public class UUser {
         this.email = email;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getLastLoginTime() {
+    public Date getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(String lastLoginTime) {
+    public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 
