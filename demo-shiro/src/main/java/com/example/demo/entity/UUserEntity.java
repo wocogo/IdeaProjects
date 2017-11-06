@@ -1,9 +1,13 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/9/24.
@@ -15,8 +19,13 @@ public class UUserEntity {
     private String nickname;
     private String email;
     private String pswd;
-    private Timestamp createTime;
-    private Timestamp lastLoginTime;
+
+    //@Column(insertable = false, updatable = false)
+    //@Generated(GenerationTime.ALWAYS)
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+    private Date lastLoginTime;
     private Long status;
 
     @Id
@@ -60,23 +69,26 @@ public class UUserEntity {
     }
 
     @Basic
-    @Column(name = "create_time")
-    public Timestamp getCreateTime() {
+    @Column(name = "create_time", updatable = false)
+    @CreationTimestamp
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
     @Basic
-    @Column(name = "last_login_time")
+    @Column(name = "last_login_time", insertable = false, updatable = false)
+//    @UpdateTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    public Timestamp getLastLoginTime() {
+    public Date getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Timestamp lastLoginTime) {
+    public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 

@@ -171,22 +171,13 @@
 //                        return formatDatetime(storeData);
                         return parseDatetime(storeData);
                     }
-                },
+                }
 //                ,
 //                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy-MM-dd hh:mm:ss')}
             },
 //            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
-////                dataType: 'date',
-////                storePattern: 'yyyy-M-d',
-////                gridPattern: 'yyyy--MM--dd',
-////                formatter: 'yyyy--MM--dd',
-//
-////                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.createTime, 'yyyy--MM--dd')},
-////                editor: DateTextBox,
-//                editorArgs: {
-////                    fromEditor: getDate,
-////                    toEditor: setDate
-//                }
+//                dataType: 'datetime',
+//                editor: DateTextBox
 //            },
             {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},

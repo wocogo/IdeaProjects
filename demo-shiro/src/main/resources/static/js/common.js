@@ -28,6 +28,7 @@ require(
             usDefaultDate: "yyyy-MM-dd",//Jun 12 2014 10:55:33:496PM
             usDefaultDatetime: "yyyy-MM-dd HH:mm:ss.SSS",//Jun 12 2014 10:55:33:496PM
             defaultDatetime: "yyyy-MM-dd HH:mm:ss",//Jun 12 2014 10:55:33:496PM
+            defaultDate: "yyyy-MM-dd",
             simple: "MMM d, yyyy",
             abbreviated: "EEE, MMM d, yyyy G",
             full: "MMMM d, 'in the year' yyyy GGGG",
@@ -77,7 +78,7 @@ require(
 
         parseDatetime = function (d) {
             if (d == null || d == '' || d == undefined) {
-                return '';
+                return;
             }
             var res = locale.parse(d, {
                 selector: 'date',
