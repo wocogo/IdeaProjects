@@ -12,8 +12,8 @@ public class UUser {
     private long id;
     private String nickname;
     private String email;
-    private Date createTime;
-    private Date lastLoginTime;
+    private String createTime;
+    private String lastLoginTime;
     private Long status;
 
     public long getId() {
@@ -40,19 +40,19 @@ public class UUser {
         this.email = email;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getLastLoginTime() {
+    public String getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
+    public void setLastLoginTime(String lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 

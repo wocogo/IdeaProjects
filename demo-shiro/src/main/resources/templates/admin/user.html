@@ -19,14 +19,14 @@
 <div data-dojo-type="dijit/layout/ContentPane" id="userGridContainer"></div>
 </body>
 <!--load dojo-->
-<!--<script type="text/javascript" src="/dojo/dojo/dojo.js"-->
-<!--data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>-->
+<script type="text/javascript" src="/dojo/dojo/dojo.js"
+data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
 <script>
     dojoConfig = {
         locale: 'en-us'
     }
 </script>
-<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>
+<!--<script type="text/javascript" src="/dojo/dojo/dojo.js"></script>-->
 <script type="text/javascript" src="/demoshiro/js/common.js"></script>
 
 
@@ -50,36 +50,6 @@
     ], function (parser, declare, _WidgetBase, _Container, Button, TextBox,
                  ComboBox, CheckBox, DateTextBox, DateTimeTextBox, TimeTextBox, MemoryStore, request, form, Grid, locale) {
 //        parser.parse();
-
-        function getDate(d){
-            if(d == undefined)return '';
-            res = locale.format(d, {
-                selector: 'datetime',
-                datePattern: 'yyyy-MM-dd hh:mm:ss'
-            });
-            return res;
-        }
-        function setDate(d){
-            if(d == undefined)return '';
-            res = locale.format(d, {
-                selector: 'datetime',
-                datePattern: 'yyyy-MM-dd hh:mm:ss'
-            });
-            return res;
-        }
-        function getTime(d){
-            res = locale.format(d, {
-                selector: 'time',
-                timePattern: 'hh:mm:ss'
-            });
-            return res;
-        }
-
-        function testA(d){
-            console.log(d,"***");
-            return "20120101"
-        }
-
 
         queryData = function () {
             var formJson = form.toJson("queryForm");
@@ -175,10 +145,10 @@
 //                ,
 //                formatter: function(rawData){return getDateStrFromDBDateStr(rawData.lastLoginTime, 'yyyy-MM-dd hh:mm:ss')}
             },
-//            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: true,
-//                dataType: 'datetime',
-//                editor: DateTextBox
-//            },
+            {id: 'createTime', field: 'createTime', name: 'Create Time', width: '120px', editable: false,
+                dataType: 'datetime',
+                editor: DateTextBox
+            },
             {id: 'id', field: 'id', name: 'User Id', width: '100px', editable: false},
             {id: 'nickname', field: 'nickname', name: 'Nick Name', width: '100px', editable: true},
             {id: 'email', field: 'email', name: 'Email', width: '100px', editable: true},
