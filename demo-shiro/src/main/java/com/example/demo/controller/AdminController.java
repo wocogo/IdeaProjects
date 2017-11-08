@@ -49,7 +49,6 @@ public class AdminController {
     @ResponseBody
     public Map<String,String> editUser(HttpServletRequest request) throws IOException {
         String userEntryListJson = request.getParameter("data");
-
         ObjectMapper mapper = new ObjectMapper();
         List<UUserEntity> userEntityList = mapper.readValue(userEntryListJson, new TypeReference<List<UUserEntity>>(){});
         System.out.println(userEntryListJson);
