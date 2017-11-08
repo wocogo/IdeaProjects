@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Date;
 /**
  * Created by Administrator on 2017/9/24.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "u_user", schema = "helssm", catalog = "")
 public class UUserEntity {
