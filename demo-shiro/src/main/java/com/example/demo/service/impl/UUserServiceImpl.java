@@ -37,7 +37,13 @@ public class UUserServiceImpl implements UUserService{
         return uUserDao.save(userEntityList);
     }
 
-//    method for building Specification
+    @Override
+    public String delete(List<UUserEntity> userEntityList) {
+        uUserDao.delete(userEntityList);
+        return null;
+    }
+
+    //    method for building Specification
 //    the parameter args which is depends on the front side logic
     private Specification<UUserEntity> where(UUserEntity uUserEntity){
         return new Specification<UUserEntity>() {

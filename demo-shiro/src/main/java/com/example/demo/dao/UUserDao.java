@@ -42,4 +42,16 @@ public interface UUserDao extends JpaRepository<UUserEntity, Long>, JpaSpecifica
     @Override
     List<UUserEntity> findAll(Specification<UUserEntity> specification);
 
+    @Override
+    void delete(Iterable<? extends UUserEntity> iterable);
+
+    @Override
+    void delete(Long aLong);
+
+    @Override
+    void delete(UUserEntity uUserEntity);
+
+    @Override
+    void deleteInBatch(Iterable<UUserEntity> iterable);
+
 }

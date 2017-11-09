@@ -41,7 +41,6 @@ public class AdminController {
     @RequestMapping(value = "admin/user")
     public String user(){
         System.out.println("userPage");
-
         return "admin/user";
     }
 
@@ -51,28 +50,17 @@ public class AdminController {
         String userEntryListJson = request.getParameter("data");
         ObjectMapper mapper = new ObjectMapper();
         List<UUserEntity> userEntityList = mapper.readValue(userEntryListJson, new TypeReference<List<UUserEntity>>(){});
-        System.out.println(userEntryListJson);
-        System.out.println(userEntityList);
-        System.out.println("userEntityList.size()= "+ userEntityList.size());
-        System.out.println(userEntityList.get(0).getEmail());
-//        uUserDao.save(userEntityList);
         uUserService.save(userEntityList);
-
         Map<String,String> returnMap = new HashMap<>();
-
         return returnMap;
     }
-
 
     @RequestMapping(value = "admin/user/query", method = RequestMethod.POST)
     @ResponseBody
     public String queryUser(HttpServletRequest request) throws IOException {
         String userEntryJson = request.getParameter("queryData");
-
         ObjectMapper mapper = new ObjectMapper();
         UUserEntity uUserEntity = mapper.readValue(userEntryJson, UUserEntity.class);
-        System.out.println(userEntryJson);
-        System.out.println(uUserEntity);
         ArrayList<UUserEntity> uUserEntityList4Query = new ArrayList<>();
         uUserEntityList4Query.add(uUserEntity);
 //        List<UUserEntity> userEntityList = uUserDao.findUUserEntitiesByNicknameOrEmail(uUserEntity.getNickname(), uUserEntity.getEmail());
@@ -80,24 +68,24 @@ public class AdminController {
         List<UUserEntity> userEntityList = uUserService.findAll(uUserEntity);
         String userEntityListStr = mapper.writeValueAsString(userEntityList);
         List<UUser> uUserList = mapper.readValue(userEntityListStr, new TypeReference<List<UUser>>(){});
-        System.out.println(userEntityList);
-        System.out.println("=================================");
-        System.out.println(uUserList);
         Map<String,Object> returnMap = new HashMap<>();
-//        returnMap.put("result", mapper.writeValueAsString(userEntityList));
         returnMap.put("result", uUserList);
-
-
 
 //        test code here
 //        String queryJson = request.getParameter("queryCondition");
 //        List<QueryCondition> queryConditions = mapper.readValue(queryJson, new TypeReference<List<QueryCondition>>() {});
 //        List<Object> uuuList = commonService.getQueryValues(queryJson);
-//        System.out.println(uuuList);
         String result = mapper.writeValueAsString(returnMap);
-
-        System.out.println(result);
         return result;
+    }
+
+    @RequestMapping(value = "admin/user/delete", method = RequestMethod.POST)
+    public String deleteUser(HttpServletRequest request) throws IOException {
+        String userEntryListJson = request.getParameter("data");
+        ObjectMapper mapper = new ObjectMapper();
+        List<UUserEntity> userEntityList = mapper.readValue(userEntryListJson, new TypeReference<List<UUserEntity>>(){});
+        uUserService.delete(userEntityList);
+        return null;
     }
 
 
