@@ -80,12 +80,14 @@ public class AdminController {
     }
 
     @RequestMapping(value = "admin/user/delete", method = RequestMethod.POST)
+    @ResponseBody
     public String deleteUser(HttpServletRequest request) throws IOException {
         String userEntryListJson = request.getParameter("data");
         ObjectMapper mapper = new ObjectMapper();
         List<UUserEntity> userEntityList = mapper.readValue(userEntryListJson, new TypeReference<List<UUserEntity>>(){});
         uUserService.delete(userEntityList);
-        return null;
+        System.out.println("success!!!");
+        return "success";
     }
 
 

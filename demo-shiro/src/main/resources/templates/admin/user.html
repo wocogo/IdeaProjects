@@ -106,8 +106,16 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
         
         
         deleteData = function () {
-
             console.log("delete");
+            var postData = JSON.stringify(userGrid.store.data);
+            console.log(userGrid.select.row.getSelected())
+            return;
+            var url = 'user/delete'
+            request.post(url,{
+                data: {
+                    "data" : postData
+                }
+            });
         }
         //test data
         var data = {
@@ -187,7 +195,9 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
                 'gridx/modules/IndirectSelect',
                 'gridx/modules/extendedSelect/Row',
                 "gridx/modules/ColumnResizer",
-//                'gridx/modules/select/Row',
+                'gridx/modules/select/Row',
+                'gridx/modules/select/Column',
+                'gridx/modules/select/Cell',
                 'gridx/modules/RowHeader',
                 'gridx/modules/CellWidget',
                 'gridx/modules/Edit',

@@ -38,10 +38,12 @@ public class UUserServiceImpl implements UUserService{
     }
 
     @Override
-    public String delete(List<UUserEntity> userEntityList) {
+    public void delete(List<UUserEntity> userEntityList) {
+//        Iterable<UUserEntity> it = null;
         uUserDao.delete(userEntityList);
-        return null;
     }
+
+
 
     //    method for building Specification
 //    the parameter args which is depends on the front side logic

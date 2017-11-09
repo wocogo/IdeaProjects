@@ -48,8 +48,8 @@ public interface UUserDao extends JpaRepository<UUserEntity, Long>, JpaSpecifica
     @Override
     void delete(Long aLong);
 
-    @Override
-    void delete(UUserEntity uUserEntity);
+//    @Override
+//    void delete(UUserEntity uUserEntity);
 
     @Override
     void deleteInBatch(Iterable<UUserEntity> iterable);

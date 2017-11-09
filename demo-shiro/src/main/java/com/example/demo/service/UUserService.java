@@ -20,6 +20,6 @@ public interface UUserService {
 //    UUserEntity list save
     public List<UUserEntity> save(List<UUserEntity> userEntityList);
 
-    public String delete(List<UUserEntity> userEntityList);
+    public void delete(List<UUserEntity> userEntityList);
 
 }
