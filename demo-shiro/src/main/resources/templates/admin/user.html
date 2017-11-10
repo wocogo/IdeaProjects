@@ -108,12 +108,22 @@ data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
         deleteData = function () {
             console.log("delete");
             var postData = JSON.stringify(userGrid.store.data);
-            console.log(userGrid.select.row.getSelected())
+            console.log(userGrid.select.row.getSelected());
+            var delData = restData = [];
+            userGrid.select.row.getSelected().forEach(function (id) {
+                console.log(id)
+            });
             return;
             var url = 'user/delete'
             request.post(url,{
                 data: {
                     "data" : postData
+                }
+            }).then(function (data) {
+                if(data === 'success'){
+                    alert(data);
+                }else{
+                    alert(data);
                 }
             });
         }
