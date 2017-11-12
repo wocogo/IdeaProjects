@@ -9,26 +9,11 @@ import java.util.List;
 public class ThreadFillData implements Runnable {
     private int startPoint,endPoint;
     public static List<String> queue = new ArrayList<String>();
-    public ThreadFillData(int startPoint, int endPoint){
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
-        for (int i = startPoint; i<endPoint; i++){
-            this.queue.add(i+"");
-//            System.out.println("adding: "+ i);
+    public static void setList(List<String> list){
+        synchronized (queue){
+            queue.addAll(list);
+            queue.notifyAll();
         }
-    }
-
-    public void generateList(){
-        for (int i = startPoint; i<endPoint; i++){
-            this.queue.add(i+"");
-            System.out.println("adding: "+ i);
-        }
-//        return queue;
-    }
-
-    public void resetPoints(int startPoint, int endPoint){
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
     }
 
     public void run() {

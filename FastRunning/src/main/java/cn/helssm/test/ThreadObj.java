@@ -19,11 +19,11 @@ public class ThreadObj implements Runnable{
             synchronized (queue){
                 try {
                     if (queue.isEmpty()){
-                        queue.wait();
                         System.out.println("waiting for new values");
+                        queue.wait();
                     }
                     s = queue.get(0);
-                    Thread.sleep(20);
+                    Thread.sleep(2);
                     String bbb = queue.remove(0);
                     if(!s.equals(bbb)){
                         System.out.println("!!!!!!!!!!!!!!!!!!!!"+s+" not equal "+ bbb);
@@ -36,12 +36,12 @@ public class ThreadObj implements Runnable{
 
             }
             if(s != null){
-//                try {
-//                    Thread.sleep(10);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Thread.sleep(3);
                 System.out.println(s);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
