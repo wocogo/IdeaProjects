@@ -16,6 +16,7 @@ public class ThreadObj implements Runnable{
     public void run() {
         String s = null;
         while (true){
+            s = null;
             synchronized (queue){
                 try {
                     if (queue.isEmpty()){
@@ -23,7 +24,7 @@ public class ThreadObj implements Runnable{
                         queue.wait();
                     }
                     s = queue.get(0);
-                    Thread.sleep(2);
+                    Thread.sleep(0);
                     String bbb = queue.remove(0);
                     if(!s.equals(bbb)){
                         System.out.println("!!!!!!!!!!!!!!!!!!!!"+s+" not equal "+ bbb);
@@ -37,7 +38,7 @@ public class ThreadObj implements Runnable{
             }
             if(s != null){
                 try {
-                    Thread.sleep(3);
+                    Thread.sleep(0);
                 System.out.println(s);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
