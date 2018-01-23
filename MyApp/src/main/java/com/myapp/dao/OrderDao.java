@@ -1,6 +1,6 @@
 package com.myapp.dao;
 
-import com.myapp.entity.OrderEntity;
+import com.myapp.entity.test.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

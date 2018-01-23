@@ -1,7 +1,7 @@
 package com.myapp.controller;
 
 import com.myapp.dao.OrderDao;
-import com.myapp.entity.OrderEntity;
+import com.myapp.entity.test.OrderEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
