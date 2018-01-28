@@ -19,7 +19,7 @@ spring:
     encoding: utf-8
     content-type: text/html
     prefix: classpath:/templates/
-    suffix: .html
+#    suffix: .html
 #  not work for below setup
 #  resources:
 #    static-locations: /**
@@ -31,7 +31,7 @@ spring:
 #    sql-dialect: org.hibernate.dialect.MySQL5Dialect
 server:
   port: 8086
-debug: true
+debug: false
 
 #logging:
 #  level.org.hibernate.SQL: debug
