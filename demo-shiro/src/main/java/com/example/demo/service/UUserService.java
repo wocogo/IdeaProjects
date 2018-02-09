@@ -12,14 +12,14 @@ import java.util.List;
 public interface UUserService {
 
 //    find by UUserEntity
-    public List<UUserEntity> findAll(UUserEntity uUserEntity);
+    List<UUserEntity> findAll(UUserEntity uUserEntity);
 
 //    save UUserEntity
-    public UUserEntity save(UUserEntity uUserEntity);
+    UUserEntity save(UUserEntity uUserEntity);
 
 //    UUserEntity list save
-    public List<UUserEntity> save(List<UUserEntity> userEntityList);
+    List<UUserEntity> save(List<UUserEntity> userEntityList);
 
-    public void delete(List<UUserEntity> userEntityList);
+    void delete(List<UUserEntity> userEntityList);
 
 }
