@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by Administrator on 2018/1/7.
  */
 @Entity
-@Table(name = "t_order", schema = "myapp", catalog = "")
+@Table(name = "t_order", schema = "myapp", catalog = "myapp")
 public class OrderEntity {
     private int id;
     private Integer orderNo;
@@ -33,7 +33,7 @@ public class OrderEntity {
         this.id = id;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     public Set<OrderGoodsEntity> getOrderGoodsEntitySet() {
         return orderGoods;

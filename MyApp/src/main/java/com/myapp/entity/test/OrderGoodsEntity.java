@@ -7,7 +7,8 @@ import java.sql.Timestamp;
  * Created by Administrator on 2018/1/7.
  */
 @Entity
-@Table(name = "t_order_goods", schema = "myapp", catalog = "")
+//catalog means database test.t_order_goods
+@Table(name = "t_order_goods", schema = "test", catalog = "test")
 public class OrderGoodsEntity {
     private int id;
     private Integer orderId;
