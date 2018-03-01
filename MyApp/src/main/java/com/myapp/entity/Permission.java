@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "m_permission", schema = "myapp")
-public class permission {
+public class Permission {
     @Id
     @Column(name = "id") @Getter @Setter
     private int id;
