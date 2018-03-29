@@ -26,13 +26,15 @@ spring:
 #  works, and the static path will referenced to /static（or/public ,/resources，/META-INF/resources)
   mvc:
     static-path-pattern: /**
+  devtools:
+    livereload:
+      port: 9999
 
 #  jooq:
 #    sql-dialect: org.hibernate.dialect.MySQL5Dialect
 server:
   port: 8088
 debug: true
-
 #logging:
 #  level.org.hibernate.SQL: debug
 
