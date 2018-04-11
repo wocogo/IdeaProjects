@@ -6,6 +6,12 @@ package cn.helssm.test;
 public class TryCatch {
 
     static String getValue(String x) throws Exception {
+        System.out.println(Math.round(1.3));
+        System.out.println(Math.floor(1.3));
+        System.out.println(Math.ceil(1.3));
+        System.out.println(Math.round(-1.3));
+        System.out.println(Math.floor(-1.3));
+        System.out.println(Math.ceil(-1.3));
 
         if("".equals(x)){
             throw new Exception("");

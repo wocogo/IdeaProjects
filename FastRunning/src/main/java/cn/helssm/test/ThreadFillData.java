@@ -10,6 +10,8 @@ public class ThreadFillData implements Runnable {
     private int startPoint,endPoint;
     public static List<String> queue = new ArrayList<String>();
     public static void setList(List<String> list){
+
+
         synchronized (queue){
             queue.addAll(list);
             queue.notifyAll();
