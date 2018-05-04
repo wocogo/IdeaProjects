@@ -64,6 +64,22 @@ public class PatternRegx {
         singleQuotes = singleQuotes.replaceFirst("^\'(.*?)\'$","$1");
         System.out.println(singleQuotes);
 
+        //find the first String after CIS..crud_header
+        String blankFollowingStr = "(CIS..crud_header)(\\s+)([^\\s]*)(\\s+)([^\\s]*)";
+        //this demo is focus to fetch out the t2
+        String testBlankStr = "select * from CIS..crud_header as t2 inner join crud_detail c2";
+
+        pattern = Pattern.compile(blankFollowingStr);
+        matcher = pattern.matcher(testBlankStr);
+        if (matcher.find()) {
+            System.out.println("blank string found");
+            System.out.println(matcher.group(3));
+            System.out.println(matcher.group(5));
+//            System.out.println(matcher.group(2));
+        }
+
+
+
 
 
 
